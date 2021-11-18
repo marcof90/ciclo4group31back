@@ -8,7 +8,7 @@ const app = express()
 require('dotenv').config()
 
 //configuraciones
-const port = 3000
+app.set('port', process.env.PORT || 3000)
 app.use(morgan('dev'))
 mongoose.connect(process.env.DB_URL)
 .then(db => console.log('Connected'))
@@ -29,6 +29,6 @@ app.get('/tripulantes', (req, res)=>{
 })
 
 //inicio del servidor
-app.listen(port, ()=>{
+app.listen(app.get('port'), ()=>{
     console.log('Server iniciado')
 })
