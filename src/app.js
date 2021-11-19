@@ -5,6 +5,7 @@ const incomeRoutes = require('./routes/income.routes')
 const outcomeRoutes = require('./routes/outcome.routes')
 const authRoutes = require('./routes/auth.routes')
 const app = express()
+const path = require('path')
 require('dotenv').config()
 
 //configuraciones
@@ -14,6 +15,7 @@ mongoose.connect(process.env.DB_URL)
 .then(db => console.log('Connected'))
 .catch(err => console.log(err))
 app.use(express.urlencoded({extended: false}))
+app.use('/documentation', express.static(path.join(__dirname, '../doc/')))
 
 //rutas
 app.use('/incomes', incomeRoutes)
