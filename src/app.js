@@ -1,14 +1,16 @@
 const express = require('express')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
+const path = require('path')
+const cors = require('cors')
 const incomeRoutes = require('./routes/income.routes')
 const outcomeRoutes = require('./routes/outcome.routes')
 const authRoutes = require('./routes/auth.routes')
 const app = express()
-const path = require('path')
 require('dotenv').config()
 
 //configuraciones
+app.use(cors())
 app.set('port', process.env.PORT || 3000)
 app.use(morgan('dev'))
 mongoose.connect(process.env.DB_URL)
