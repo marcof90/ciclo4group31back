@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const incomeController = require('../controllers/income.controller')
+const Auth = require('../middlewares/authentication')
 
 /**
  * @api {get} /incomes Get incomes
@@ -34,7 +35,7 @@ const incomeController = require('../controllers/income.controller')
  *      }
  *  ]
  */
-router.get('/', incomeController.list)
+router.get('/', Auth, incomeController.list)
 
 /**
  * @api {post} /incomes Add income
@@ -60,6 +61,6 @@ router.get('/', incomeController.list)
  *     "__v": 0
  * }
  */
-router.post('/', incomeController.add)
+router.post('/', Auth, incomeController.add)
 
 module.exports = router

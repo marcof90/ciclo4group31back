@@ -12,7 +12,7 @@ const incomeController = {
     },
     async list(req, res){
         try {
-            const incomes = await Income.find()
+            const incomes = await Income.find({user: req.body.user})
             res.status(200).json(incomes)
         } catch (error) {
             res.status(500).json(error)
